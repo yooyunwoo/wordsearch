@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="10단계로 도전하는 영어 워드서치 게임" />
+    <title>Word Search</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./words.js"></script>
+    <script defer src="./generator.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="card top">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">Aa</span>
+          <div>
+            <h1>Word Search</h1>
+            <p>영어 단어를 찾아보세요</p>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>시간</dt><dd id="time">00:00</dd></div>
+          <div class="stat"><dt>찾은 단어</dt><dd id="found-stat">0/0</dd></div>
+          <div class="stat"><dt>힌트</dt><dd id="hint-stat">0</dd></div>
+        </dl>
+      </header>
+
+      <nav class="card levels" id="levels" aria-label="단계 선택"></nav>
+
+      <main class="board">
+        <section class="card puzzle" aria-labelledby="level-title">
+          <div class="puzzle-head">
+            <div>
+              <span class="badge" id="level-badge">LEVEL 1</span>
+              <h2 id="level-title">Fruits</h2>
+            </div>
+            <div class="tools">
+              <button class="btn icon" id="zoom-out" type="button" aria-label="축소">−</button>
+              <button class="btn icon" id="zoom-in" type="button" aria-label="확대">+</button>
+              <button class="btn" id="pan" type="button" hidden aria-pressed="false">✋ 이동</button>
+              <button class="btn" id="hint" type="button">💡 힌트</button>
+              <button class="btn" id="restart" type="button">↻ 새 퍼즐</button>
+            </div>
+          </div>
+          <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+          <div class="grid-scroll" id="grid-scroll">
+            <div class="grid" id="grid" role="application" aria-label="글자 판"></div>
+          </div>
+          <p class="tip">첫 글자에서 마지막 글자까지 손가락(마우스)으로 드래그하세요. 탭-탭도 돼요. 확대 후에는 ✋ 이동으로 스크롤하세요.</p>
+        </section>
+
+        <aside class="card words" aria-labelledby="words-title">
+          <h3 id="words-title">찾을 단어 <span id="words-count"></span></h3>
+          <ul id="word-list"></ul>
+        </aside>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog class="card result" id="result">
+      <div class="result-emoji" id="result-emoji">🎉</div>
+      <h2 id="result-title">Level 1 클리어!</h2>
+      <p id="result-sub"></p>
+      <div class="result-stats">
+        <div><span>기록</span><strong id="r-time">0:00</strong></div>
+        <div><span>힌트</span><strong id="r-hints">0</strong></div>
+        <div><span>최고 기록</span><strong id="r-best">0:00</strong></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn" id="r-retry" type="button">다시 하기</button>
+        <button class="btn primary" id="r-next" type="button">다음 단계 →</button>
+      </div>
+    </dialog>
+  </body>
+</html>
