@@ -9,7 +9,7 @@
 
   const el = {
     grid: $('#grid'), scroll: $('#grid-scroll'), list: $('#word-list'), levels: $('#levels'),
-    time: $('#time'), foundStat: $('#found-stat'), hintStat: $('#hint-stat'), bar: $('#progress-bar'),
+    foundStat: $('#found-stat'), hintStat: $('#hint-stat'), bar: $('#progress-bar'),
     badge: $('#level-badge'), title: $('#level-title'), count: $('#words-count'), toast: $('#toast'),
     dialog: $('#result'),
   };
@@ -30,7 +30,6 @@
   const save = load();
 
   /* ---------- 유틸 ---------- */
-  const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
   const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   let toastTimer;
   function toast(msg) {
@@ -58,7 +57,7 @@
     S = {
       level: n, cfg, size: cfg.size, grid: puzzle.grid, placements: puzzle.placements,
       words: puzzle.words.slice().sort(), found: new Set(), hints: 0,
-      elapsed: 0, last: performance.now(), running: true, done: false, zoom: 1, cell: 24,
+      done: false, zoom: 1, cell: 24,
     };
     save.level = n; persist();
 
@@ -109,20 +108,6 @@
       return `<button class="${cls}" data-level="${n}" type="button" ${n > save.unlocked ? 'disabled' : ''} aria-label="${n}단계${n > save.unlocked ? ' (잠김)' : ''}">${n > save.unlocked ? '🔒' : n}</button>`;
     }).join('');
   }
-
-  /* ---------- 타이머 ---------- */
-  setInterval(() => {
-    if (!S || !S.running) return;
-    const now = performance.now();
-    S.elapsed += (now - S.last) / 1000;
-    S.last = now;
-    el.time.textContent = fmt(S.elapsed);
-  }, 250);
-  document.addEventListener('visibilitychange', () => {
-    if (!S || S.done) return;
-    S.running = !document.hidden;
-    S.last = performance.now();
-  });
 
   /* ---------- 선택 로직 ---------- */
   function cellAt(e) {
@@ -244,10 +229,8 @@
 
   /* ---------- 클리어 ---------- */
   function finish() {
-    S.done = true; S.running = false;
-    const t = Math.round(S.elapsed);
-    const prev = save.best[S.level];
-    if (prev == null || t < prev) save.best[S.level] = t;
+    S.done = true;
+    save.best[S.level] = true;
     const last = S.level === LEVELS.length;
     if (!last) save.unlocked = Math.max(save.unlocked, S.level + 1);
     persist();
@@ -256,9 +239,8 @@
     $('#result-emoji').textContent = last ? '🏆' : '🎉';
     $('#result-title').textContent = last ? '모든 단계 클리어!' : `Level ${S.level} 클리어!`;
     $('#result-sub').textContent = last ? '당신은 진정한 워드서치 마스터예요.' : `${S.words.length}개 단어를 모두 찾았어요.`;
-    $('#r-time').textContent = fmt(t);
+    $('#r-words').textContent = S.words.length;
     $('#r-hints').textContent = S.hints;
-    $('#r-best').textContent = fmt(save.best[S.level]);
     $('#r-next').textContent = last ? '처음부터 →' : '다음 단계 →';
     setTimeout(() => el.dialog.showModal(), 700);
   }

@@ -18,11 +18,11 @@
 
   // dirs: 허용 방향 세트 (0: →↓, 1: +↘, 2: +↗, 3: 8방향 전부)
   const LEVELS = [
-    { size: 25, count: 100, title: 'Fruits, Food & Animals', ko: '과일·음식·동물', pools: ['fruits', 'animals', 'food'], dirs: 1 },
-    { size: 25, count: 100, title: 'School Days',            ko: '학교·옷·감정',   pools: ['school', 'clothes', 'feelings', 'body'], dirs: 1 },
-    { size: 26, count: 100, title: 'Wild Nature',            ko: '자연·여행',      pools: ['nature', 'travel'], dirs: 1 },
-    { size: 26, count: 100, title: 'People & Play',          ko: '직업·운동',      pools: ['jobs', 'sports', 'body'], dirs: 2 },
-    { size: 27, count: 100, title: 'City Life',              ko: '도시·여행',      pools: ['travel', 'jobs', 'school'], dirs: 2 },
+    { size: 25, count: 100, title: 'Fruits, Food & Animals', ko: '과일·음식·동물', pools: ['fruits', 'animals', 'food'], dirs: 3 },
+    { size: 25, count: 100, title: 'School Days',            ko: '학교·옷·감정',   pools: ['school', 'clothes', 'feelings', 'body'], dirs: 3 },
+    { size: 26, count: 100, title: 'Wild Nature',            ko: '자연·여행',      pools: ['nature', 'travel'], dirs: 3 },
+    { size: 26, count: 100, title: 'People & Play',          ko: '직업·운동',      pools: ['jobs', 'sports', 'body'], dirs: 3 },
+    { size: 27, count: 100, title: 'City Life',              ko: '도시·여행',      pools: ['travel', 'jobs', 'school'], dirs: 3 },
     { size: 28, count: 100, title: 'Everyday Mix',           ko: '일상 종합',      pools: ['food', 'animals', 'clothes', 'feelings', 'sports'], dirs: 3 },
     { size: 28, count: 100, title: 'Nature & Body',          ko: '자연·신체',      pools: ['nature', 'body', 'fruits', 'animals'], dirs: 3 },
     { size: 29, count: 100, title: 'Mixed Master',           ko: '종합',           pools: ['fruits', 'animals', 'food', 'school', 'nature', 'travel', 'jobs', 'body', 'sports', 'feelings', 'clothes'], dirs: 3 },

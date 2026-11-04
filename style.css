@@ -148,7 +148,7 @@ dialog.result::backdrop { background: rgba(15, 18, 32, 0.55); backdrop-filter: b
 .result-emoji { font-size: 3rem; }
 .result h2 { margin: 6px 0 4px; }
 .result p { margin: 0 0 16px; color: var(--muted); }
-.result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
+.result-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 18px; }
 .result-stats div { background: var(--accent-soft); border-radius: 16px; padding: 10px 4px; }
 .result-stats span { display: block; font-size: 0.7rem; color: var(--muted); }
 .result-stats strong { font-variant-numeric: tabular-nums; }
